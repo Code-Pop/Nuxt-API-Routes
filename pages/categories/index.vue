@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { Category } from '@/data/categories'
-import { getCategoriesUrl } from '@/data/categories'
 
-const { data: categories } = await useFetch<Category[]>(
-  getCategoriesUrl()
-)
+const { data: categories } = await useServerRoute<Category[]>()
 </script>
 
 <template>
