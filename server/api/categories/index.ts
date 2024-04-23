@@ -1,5 +1,5 @@
-import { getCategoriesUrl } from '@/data/categories'
+import { getCategoriesUrl, Category } from '@/data/categories'
 
 export default defineEventHandler(() => {
-  return $fetch(getCategoriesUrl())
+  return $fetch<Category[]>(getCategoriesUrl())
 })

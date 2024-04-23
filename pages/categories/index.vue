@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type { Category } from '@/data/categories'
-
-const { data: categories } = await useFetch<Category[]>('/api/categories')
+const { data: categories } = await useFetch('/api/categories')
 </script>
 
 <template>

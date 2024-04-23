@@ -1,5 +1,5 @@
-import { getPostsUrl } from '@/data/posts'
+import { getPostsUrl, Post } from '@/data/posts'
 
 export default defineEventHandler(() => {
-  return $fetch(getPostsUrl())
+  return $fetch<Post[]>(getPostsUrl())
 })
