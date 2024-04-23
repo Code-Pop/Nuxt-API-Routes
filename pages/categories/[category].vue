@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import type { CategoryDetails } from '@/data/categories'
-import { useCategoryState } from '@/composables/useCategoryState'
+import { useCategoryState } from '~/composables/useCategoryState'
 
 definePageMeta({
   layout: 'breadcrumb'
 })
 
-const { data: category } = await useServerRoute<CategoryDetails>()
+const categorySlug = useParam('category')
+
+const { data: category } = await useFetch<CategoryDetails>(`/api/categories/${categorySlug}`)
 
 const categoryState = useCategoryState()
 

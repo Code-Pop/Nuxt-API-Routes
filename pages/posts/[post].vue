@@ -5,7 +5,9 @@ definePageMeta({
   layout: 'breadcrumb'
 })
 
-const { data: post } = await useServerRoute<PostDetails>()
+const postSlug = useParam('post')
+
+const { data: post } = await useFetch<PostDetails>(`/api/posts/${postSlug}`)
 
 const categoryState = useCategoryState()
 
