@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { CategoryDetails } from '@/data/categories'
 import { getCategoryDetailsUrl } from '@/data/categories'
-import { useCategoryState } from '~/composables/useCategoryState';
 
 definePageMeta({
   layout: 'breadcrumb'
