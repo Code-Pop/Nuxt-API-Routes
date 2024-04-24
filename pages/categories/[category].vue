@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useCategoryState } from '~/composables/useCategoryState'
-
 definePageMeta({
   layout: 'breadcrumb'
 })
