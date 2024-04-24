@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { data: categories } = await useFetch('/api/categories')
+const { data } = await useFetch('/api/categories')
+const categories = data
 </script>
 
 <template>
