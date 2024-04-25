@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const { data } = await useFetch('/api/categories')
-const categories = data
+import type { Category } from '@/data/categories'
+
+const { data: categories } = await useServerRoute<Category[]>()
 </script>
 
 <template>

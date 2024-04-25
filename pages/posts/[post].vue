@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { PostDetails } from '@/data/posts'
+
 definePageMeta({
   layout: 'breadcrumb'
 })
 
-const postSlug = useParam('post')
-
-const { data: post } = await useFetch(`/api/posts/${postSlug}`)
+const { data: post } = await useServerRoute<PostDetails>()
 
 const categoryState = useCategoryState()
 

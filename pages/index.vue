@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { data: posts } = await useFetch('/api')
+import type { Post } from '@/data/posts'
+
+const { data: posts } = await useServerRoute<Post[]>()
 </script>
 
 <template>
