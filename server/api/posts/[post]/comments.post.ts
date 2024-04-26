@@ -10,5 +10,5 @@ export default defineEventHandler(async (event) => {
     postId: postSlug
   }
 
-  createComment(comment)
+  return createComment(comment)
 })
