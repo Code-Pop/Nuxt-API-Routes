@@ -2,12 +2,40 @@
 import type { Comment } from '@/data/comments'
 
 const props = defineProps<{ postId: string }>()
-const comments = await $fetch<Comment[]>(`/api/posts/${props.postId}/comments`)
+const commentsUrl = `/api/posts/${props.postId}/comments`
+const comments = await $fetch<Comment[]>(commentsUrl)
+const commenterInput = ref('')
+const contentInput = ref('')
+
+const submit = async () => {
+  const formFields = {
+    commenter: commenterInput.value,
+    content: contentInput.value
+  }
+
+  commenterInput.value = ''
+  contentInput.value = ''
+
+  const comment = await $fetch<Comment>(commentsUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formFields)
+  })
+
+  comments.push(comment)
+}
 </script>
 
 <template>
   <div class="comment-section">
     <h3>Comments</h3>
+    <form class="comment-form" @submit.prevent="submit">
+      Your name: <input v-model="commenterInput" class="field commenter" type="text">
+      <textarea v-model="contentInput" class="field content" />
+      <input class="submit" type="submit" value="Submit">
+    </form>
     <div v-for="comment in comments" :key="comment.id" class="comment">
       <span class="commenter">{{ comment.commenter }}:</span>
       <p>{{ comment.content }}</p>
