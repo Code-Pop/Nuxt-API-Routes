@@ -26,7 +26,23 @@ if (post.value) {
         <CategoryLink :category="post.category" />
       </h1>
       <RenderMarkdown :source="post.content" />
-      <CommentSection :post-id="post.id" />
+      <ClientOnly>
+        <Transition>
+          <CommentSection :post-id="post.id" />
+        </Transition>
+      </ClientOnly>
     </template>
   </main>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1s;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
