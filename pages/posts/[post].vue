@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { PostDetails } from '@/data/posts'
+import type CommentSection from '~/components/CommentSection.vue';
 
 definePageMeta({
   layout: 'breadcrumb'
@@ -25,6 +26,7 @@ if (post.value) {
         <CategoryLink :category="post.category" />
       </h1>
       <RenderMarkdown :source="post.content" />
+      <CommentSection :post-id="post.id" />
     </template>
   </main>
 </template>
