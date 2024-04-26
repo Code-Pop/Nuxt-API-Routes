@@ -3,7 +3,12 @@ import type { Comment } from '@/data/comments'
 
 const props = defineProps<{ postId: string }>()
 const commentsUrl = `/api/posts/${props.postId}/comments`
-const comments = await $fetch<Comment[]>(commentsUrl)
+
+const { data: comments } = await useAsyncData<Comment[]>(
+  commentsUrl,
+  () => $fetch(commentsUrl), { default: () => [] }
+)
+
 const commenterInput = ref('')
 const contentInput = ref('')
 
@@ -16,7 +21,7 @@ const submit = async () => {
   commenterInput.value = ''
   contentInput.value = ''
 
-  const comment = await $fetch<Comment>(commentsUrl, {
+  await $fetch<Comment>(commentsUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -24,7 +29,7 @@ const submit = async () => {
     body: JSON.stringify(formFields)
   })
 
-  comments.push(comment)
+  refreshNuxtData(commentsUrl)
 }
 </script>
 
