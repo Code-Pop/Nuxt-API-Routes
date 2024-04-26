@@ -18,6 +18,12 @@ const submit = async () => {
     content: contentInput.value
   }
 
+  comments.value.push({
+    ...formFields,
+    id: 0,
+    postId: ''
+  })
+
   commenterInput.value = ''
   contentInput.value = ''
 
