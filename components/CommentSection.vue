@@ -5,8 +5,8 @@ const props = defineProps<{ postId: string }>()
 const commentsUrl = `/api/posts/${props.postId}/comments`
 
 const { data: comments } = await useAsyncData<Comment[]>(
-  commentsUrl,
-  () => $fetch(commentsUrl), { default: () => [] }
+  () => $fetch(commentsUrl),
+  { default: () => [] }
 )
 
 const commenterInput = ref('')
