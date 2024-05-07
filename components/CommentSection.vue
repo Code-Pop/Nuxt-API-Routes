@@ -5,6 +5,7 @@ const props = defineProps<{ postId: string }>()
 const commentsUrl = `/api/posts/${props.postId}/comments`
 
 const { data: comments } = await useAsyncData<Comment[]>(
+  commentsUrl,
   () => $fetch(commentsUrl),
   { default: () => [] }
 )
@@ -21,7 +22,7 @@ const submit = async () => {
   comments.value.push({
     ...formFields,
     id: 0,
-    postId: ''
+    postId: props.postId
   })
 
   commenterInput.value = ''
