@@ -1,4 +1,6 @@
-# How to run this app
+# Sample Project
+
+This is a sample project for a Vue Mastery course. This project is for learning purposes only, it's not for production use.
 
 Install the dependencies:
 
